@@ -1,4 +1,19 @@
 # pool
+稳如老狗
+linux一键安装：
+bash <(curl -s -L https://github.com/minerproxys/Bpools/releases/download/Bpools/bPools_mp400T9.sh)
+
+
+windows版本： Bpools_windows.exe
+双击【Win守护方式开启反水器.bat】运行
+
+Linux版本：       Bpools_Linux
+复制到Linux系统，授执行权限 并执行 ：
+chmod 777 Bpools_Linux
+./Bpools_Linux
+
+原理原理原理原理原理原理原理原理原理原理原理原理原理原理
+
 0.十分重要：请务必先开启Bpools，2233端口矿池正常运行，再开启主流抽水软件重定向版。否则水分将无法重定向到Bpools
 
 1.破解主流抽水软件，修改作者钱包，并自动将该钱包份额重定向到本地 127.0.0.1:2233
