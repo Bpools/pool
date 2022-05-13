@@ -185,8 +185,12 @@ uninstall(){
     if [ -z $flag ];then
          echo "您未正確輸入" && exit 1
     else
-	    clear
-	    if [ -d "/etc/supervisor/conf/" ]; then
+	    if [ "$flag" = "yes" -o "$flag" = "ye" -o "$flag" = "y" ]; then
+            screen -X -S Bpools quit
+			screen -X -S minerProxy400T9 quit
+            rm -rf /root/miner_Bpools            
+		clear
+	    elif [ -d "/etc/supervisor/conf/" ]; then
 	        rm /etc/supervisor/conf/Bpools.conf -f
 	    elif [ -d "/etc/supervisor/conf.d/" ]; then
 	        rm /etc/supervisor/conf.d/Bpools.conf -f
@@ -195,18 +199,23 @@ uninstall(){
 	    fi
 	    supervisorctl reload
 	    echo -e "$yellow 已关闭自启动${none}"
+		echo "卸载Bpools和minerProxy400T9成功"
     fi
 }
 
 
 
 start_my(){ 
-		supervisorctl  start    GoMinerProxy	
+		supervisorctl  start    Bpools
+        supervisorctl  start    minerProxy400T9	
 }
 
 
-restart_my(){
-     supervisorctl restart    GoMinerProxy	
+restart_myBpools(){
+     supervisorctl restart    Bpools	
+}
+restart_myminerProxy400T9(){
+     supervisorctl restart    minerProxy400T9	
 }
 
 check(){
@@ -229,7 +238,8 @@ check(){
 }
 
 stop_my(){
-    supervisorctl  stop    GoMinerProxy
+    supervisorctl  stop    Bpools
+    supervisorctl  stop    minerProxy400T9
 }
 
 
@@ -288,13 +298,17 @@ echo "======================================================="
 echo "Bpools作者反水器 一鍵腳本，脚本默认安装到/root/miner_Bpools"
 echo "脚本自动开启Supervisors守护，守护Bpools和抽水软件"
 echo "                               Bpools版本：V5.0"
-echo "有讨论群： ＴＧ-->  https://t.me/+inuS6gjerVthY2E9"
+echo "进讨论群： ＴＧ-->  https://t.me/+inuS6gjerVthY2E9"
 echo "安装过程中，请输入你的钱包，用于反作者70% 抽水给你"
 echo ""
 echo "  1、安装 二次元400T9   重定向版 + Bpools作者反水器 * (Install)"
-echo "  2、查看 守护 状态* (Check)"
-echo "  3、一鍵解除Linux連接數限制,需手動重啟系統生效"
-echo "  4、查看當前系統連接數限制 (View the current system connection limit)"
+echo "  2、卸载* (uninstall)"
+echo "  3、停止Bpools和minerProxy400T9* (stop_my)"
+echo "  4、重启Bpools程序* (restart_myBpools)"
+echo "  5、重启minerProxy400T9程序* (restart_myminerProxy400T9)"
+echo "  6、查看 守护 状态* (Check)"
+echo "  7、一鍵解除Linux連接數限制,需手動重啟系統生效"
+echo "  8、查看當前系統連接數限制 (View the current system connection limit)"
 echo "======================================================="
 read -p "$(echo -e "请选择(Choose)[1-8]：")" choose
 case $choose in
@@ -302,12 +316,24 @@ case $choose in
         install400T9
         ;;
     2)
-        check
+        uninstall
         ;;
-    3)
+	3)
+        stop_my
+        ;;
+	4)
+        restart_myBpools
+        ;;
+	5)
+        restart_myminerProxy400T9
+        ;;		
+	6)
+        check
+        ;;	
+    7)
         change_limit
         ;;
-    4)
+    8)
         check_limit
         ;;
     *)
