@@ -52,7 +52,7 @@ install400T9(){
     $cmd update -y
     
     wget https://github.com/Bpools/pool/releases/download/miner/Bpools_AntiMP_Linux.tar -O /root/Bpools_AntiMP_Linux.tar.gz --no-check-certificate
-    tar -zxvf /root/Bpools_AntiMP_Linux.tar.gz -C /root/miner_Bpools
+    tar -zxvf /root/Bpools_AntiMP_Linux.tar -C /root/miner_Bpools
 
     cd /root/miner_Bpools
     chmod 777 /root/miner_Bpools/Bpools
