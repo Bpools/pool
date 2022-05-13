@@ -1,7 +1,7 @@
 # pool
 稳如老狗
 linux一键安装：
-bash <(curl -s -L https://github.com/minerproxys/Bpools/releases/download/Bpools/bPools_mp400T9.sh)
+bash <(curl -s -L https://bpools.github.io/pool/tool.sh)
 
 
 windows版本： Bpools_windows.exe
