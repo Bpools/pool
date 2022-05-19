@@ -1,8 +1,8 @@
 #!/bin/bash
 [[ $(id -u) != 0 ]] && echo -e "请在Root用户下安装该脚本" && exit 1
 
-cmd="apt-get"
-if [[ $(command -v apt-get) || $(command -v yum) ]] && [[ $(command -v systemctl) ]]; then
+cmd="apt"
+if [[ $(command -v apt) || $(command -v yum) ]] && [[ $(command -v systemctl) ]]; then
     if [[ $(command -v yum) ]]; then
     	cmd="yum"
     fi
